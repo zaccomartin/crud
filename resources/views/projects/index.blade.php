@@ -10,4 +10,47 @@
             </a>
         </div>
     </div>
-@endsection
+
+    <table class="border-separate border-2 text-center border-gray-500 mt-3" style="width: 100%">
+        <thead>
+        <tr>
+            <th class="px-4 py-2">{{ __("Nombre") }}</th>
+            <th class="px-4 py-2">{{ __("Autor") }}</th>
+            <th class="px-4 py-2">{{ __("Alta") }}</th>
+            <th class="px-4 py-2">{{ __("Acciones") }}</th>
+        </tr>
+        </thead>
+        <tbody>
+            @forelse($projects as $project)
+                <tr>
+                    <td class="border px-4 py-2">{{ $project->name }}</td>
+                    <td class="border px-4 py-2">{{ $project->user->name }}</td>
+                    <td class="border px-4 py-2">{{ date_format($project->created_at, "d/m/Y") }}</td>
+                    <td class="border px-4 py-2">
+                        <a href="{{ route("projects.edit", ["project" => $project]) }}" class="text-blue-400">{{ __("Editar") }}</a> |
+                        <a
+                            href="#"
+                            class="text-red-400"
+                            onclick="preventDefault();
+                            document.getElementById('delete-project-{{ $project->id }}-form').submit();"
+                        >{{ __("Eliminar") }}
+                        </a>
+                        <form id="delete-project-{{ $project->id }}-form" action="{{ route("projects.destroy", ["project" => $project]) }}" method="POST" class="hidden">
+                            @method("DELETE")
+                            @csrf
+                        </form>
+                    </td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="3">
+                        <div class="bg-red-100 text-center bodrder border-red-400 text-red-700 px-4 py-3 rounded">
+                        <p><strong class="font-bold">{{ __("No hay proyectos") }}</strong></p>
+                        <span class="block sm:inline">{{ __("Todavia no hay nada que mostrar") }}</span>
+                    </div>
+                </td>
+            </tr>
+        @endforelse
+        </tbody>
+    </table>
+@endsection 
