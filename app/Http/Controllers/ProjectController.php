@@ -29,7 +29,11 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        $project = new Project;
+        $title = __("Crear proyecto");
+        $textButton = __("Crear");
+        $route = route("projects.store");
+        return view("projects.create", compact("title", "textButton", "route", "project"));
     }
 
     /**
@@ -40,19 +44,16 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            "name" => "required|max:140|unique:projects",
+            "description" => "nullable|string|min:10"
+        ]);
+        Project::create($request->only("name", "description"));
+        return redirect(route("projects.index"))
+            ->with("message", "Proyecto creado!");
+        
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Project  $project
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Project $project)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -62,7 +63,11 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        $update = true;
+        $title = __("Editar proyecto");
+        $textButton = __("Actualizar");
+        $route = route("projects.update", ["project" =>$project]);
+        return view("projects.edit", compact("update", "title", "textButton", "route", "project"));
     }
 
     /**
@@ -74,7 +79,12 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //
+        $this->validate($request, [
+            "name" => "required|unique:projects,name," . $project->id,
+            "description" => "nullable|string|min:10"
+        ]);
+        $project->fill($request->only("name", "description"))->save();
+        return back()->with("success", __("Proyecto actualizado!"));
     }
 
     /**
@@ -85,6 +95,7 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+        return back()->with("success", __("Proyecto eliminado!"));
     }
 }

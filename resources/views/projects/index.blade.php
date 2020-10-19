@@ -31,7 +31,7 @@
                         <a
                             href="#"
                             class="text-red-400"
-                            onclick="preventDefault();
+                            onclick="event.preventDefault();
                             document.getElementById('delete-project-{{ $project->id }}-form').submit();"
                         >{{ __("Eliminar") }}
                         </a>
@@ -53,4 +53,10 @@
         @endforelse
         </tbody>
     </table>
+
+    @if($projects->count())
+        <div class="mt-3">
+            {{ $projects->links() }}
+        </div>
+    @endif
 @endsection 
