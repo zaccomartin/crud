@@ -1,7 +1,7 @@
 @extends("layouts.app")
 
 @section("content")
-<center><h1>chico bomba chicho chico bomba..</h1></center>
+<center><h1>zaccomartin @ gmail . com</h1></center>
     <div class="flex justify-center flex-wrap bg-gray-200 p-4 mt-5">
         <div class="text-center">
             <h1 class="mb-5">{{ __("Listado de proyectos") }}</h1>
