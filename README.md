@@ -8,7 +8,7 @@
 </p>
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/zaccomartin/crud/main/0.png" alt="login">
+    <img src="https://raw.githubusercontent.com/zaccomartin/crud/main/01.jpg" alt="login">
     <img src="https://raw.githubusercontent.com/zaccomartin/crud/main/1.png" alt="index del crud">
     <img src="https://raw.githubusercontent.com/zaccomartin/crud/main/2.png" alt="creando un post">
     <img src="https://raw.githubusercontent.com/zaccomartin/crud/main/3.png" alt="revisando los ultimos posts">
