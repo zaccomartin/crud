@@ -49,9 +49,7 @@ class ProjectController extends Controller
             "description" => "nullable|string|min:10"
         ]);
         Project::create($request->only("name", "description"));
-        return redirect(route("projects.index"))
-            ->with("message", "Proyecto creado!");
-        
+        return redirect(route("projects.index"))->with("message", "Proyecto creado!");
     }
 
 
@@ -84,7 +82,8 @@ class ProjectController extends Controller
             "description" => "nullable|string|min:10"
         ]);
         $project->fill($request->only("name", "description"))->save();
-        return back()->with("success", __("Proyecto actualizado!"));
+        return redirect()->route('projects.index')->with("success", __("Proyecto actualizado!"));
+        // return back()->with("success", __("Proyecto actualizado!"));
     }
 
     /**
