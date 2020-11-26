@@ -16,9 +16,7 @@
 
 ## CRUD
     Este crud esta desarrollado enteramente en laravel 8 , plantillas blade y tailwind css.
-    Es mi ultimo proyecto hasta la fecha 19/10/2020.
     
-    proximamente estaré mejorando el frontend, ya que tailwind es un framework relativamente nuevo para mi.
 
      
 ## About Laravel
